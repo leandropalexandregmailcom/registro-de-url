@@ -27,9 +27,8 @@ class UrlModel extends Model
         return $this->hasOne(LogUrlModel::class, "id_url", "id_url")->latest('id_log_url', 'max');
     }
 
-    public function dlastUrl()
+    public function user()
     {
-        return $this->hasOne(LogUrlModel::class, "id_url", "id_url");
+        return $this->belongsTo(User::class, "id_user", "id");
     }
-
 }

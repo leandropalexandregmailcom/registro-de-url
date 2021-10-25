@@ -19,6 +19,7 @@ class Url extends Migration
             $table->increments('id_url');
             $table->string('url', 255);
             $table->text('descricao', 255);
+            $table->unsignedBigInteger('id_user')->references('id')->on('users');
             $table->integer('status')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('NULL ON UPDATE CURRENT_TIMESTAMP'))->nullable();

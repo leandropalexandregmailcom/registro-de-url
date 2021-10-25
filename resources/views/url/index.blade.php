@@ -139,8 +139,12 @@
                 method: "get"
             }).success(function(data)
             {
-                document.getElementById(val.getAttribute("id")).text = data.status_code
-
+                var status = 'Nenhum'
+                if(data.status_code)
+                {
+                    status = data.status_code
+                }
+                document.getElementById(val.getAttribute("id")).text = status
 
             }).fail(function(data)
             {

@@ -24,7 +24,20 @@ class LoginUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' 	    => 'email|required|regex:/^[\S]+$/',
+            'password' 		=> 'required|min:2|max:10',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required'        => 'O campo email é obrigatório.',
+            'email.regex'           => 'Email inválido.',
+            'email.unique'          => 'Email inválido.',
+            'email.email'           => 'Email inválido.',
+            'password.min'          => 'O campo senha deve ter no mínimo 4 caracteres.',
+            'password.max'          => 'O campo senha deve ter no máximo 10 caracteres.'
         ];
     }
 }

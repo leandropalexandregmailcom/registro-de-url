@@ -24,7 +24,18 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' 	    => 'email|required|regex:/^[\S]+$/',
+            'name' 		    => 'required|min:2',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required'         => 'O campo nome é obrigatório.',
+            'email.required'        => 'O campo email é obrigatório.',
+            'email.regex'           => 'Email inválido.',
+            'email.email'           => 'Email inválido.',
         ];
     }
 }

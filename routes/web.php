@@ -13,6 +13,7 @@ Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('logar', [LoginController::class, 'logar'])->name('logar');
 Route::get('show', [UserController::class, 'show'])->name('show.user');
 Route::post('create', [UserController::class, 'create'])->name('create.user');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout.user');
 
 Route::middleware('auth')->group(function() {
     Route::get('/', [UserController::class, 'index'])->name('home.user');
@@ -25,7 +26,7 @@ Route::prefix('user/')->middleware('auth')->group(function() {
     Route::get('edit', [UserController::class, 'edit'])->name('edit.user');
     Route::post('update', [UserController::class, 'update'])->name('update.user');
     Route::post('delete', [UserController::class, 'delete'])->name('delete.user');
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
 
     Route::prefix('url/')->group(function() {
 

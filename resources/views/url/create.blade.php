@@ -31,6 +31,7 @@
             <input type="text" class="form-control" id="name" name = "url" placeholder="URL">
         </div>
         <div class="form-group">
+            <input type = "hidden" name = "id_user" value = "{{ auth()->user()->id }}"
             <label for="text">Descricão</label>
             <input type="text" class="form-control" id="descricao" name = "descricao" placeholder="Descrição">
         </div>

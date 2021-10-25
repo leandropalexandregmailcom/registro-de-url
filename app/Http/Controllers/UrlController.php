@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Carbon\Carbon;
 use App\Models\Url;
 use App\Models\UrlModel;
 use App\Models\LogUrlModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\Url\CreateUrlRequest;
 use App\Http\Url\Requests\UpdateUrlRequest;
@@ -22,7 +25,7 @@ class UrlController extends Controller
 
     public function index()
     {
-        return view('url/index')->with('urls', $this->model->get());
+        return view('url/index')->with('urls', $this->model->where(["id_user" => Auth::user()->id])->get());
     }
 
     public function status($id)
@@ -38,9 +41,12 @@ class UrlController extends Controller
 
     public function create(CreateUrlRequest $request)
     {
-        $this->model->create($request->all());
+        $this->model->url = $request->url;
+        $this->model->descricao = $request->descricao;
+        $this->model->id_user = Auth::user()->id;
+        $this->model->save();
 
-        session()->flash('msg', 'A url foi cadastrado com sucesso!');
+        session()->flash('msg', 'A url foi cadastrada com sucesso!');
 
         return redirect()->route('index.url');
     }
