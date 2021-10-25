@@ -1,3 +1,25 @@
+
+Sisitema de registro e monitoramento de url.
+
+Após baixar o projeto, entre na pasta do mesmo, edite o arquivo .env com seus dados do ambiente locar e com o nome do seu banco de dados e execute os seguintes comandos para fazer a instalação:
+composer install;
+php artisan migrate;
+php artisan key:generate;
+npm install;
+npm run build;
+npm run dev;
+php artisan serve;
+Depois acesse a porta disponibilizada pela aplicação através de algum navegador.
+
+Para rodar as filas digite os seguintes comandos:
+php artisan queue:work;
+
+Para testar se a command está funcionando digite:
+php artisan command:logUrlCommand;
+Esse mando vai buscar todas as URLs cadastradas e fazer uma requisição get em cada uma delas registrando os dados da resposta na tabela log_url.
+
+Para deixar a fila rodando permanentemente, basta configurar o agendador do seu sistema operacional, geralmente é o cron no linux ou o agendador de tarefas no windows.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
