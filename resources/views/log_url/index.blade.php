@@ -55,7 +55,7 @@
                                 {{ $url->updated_at }}
                             </a>
                         </td>
-                        <td style = "width: 10%;">
+                        <td style = "text-align: center; width: 10%;">
                             <a>
                                 {{ $url->status_code }}
                             </a>

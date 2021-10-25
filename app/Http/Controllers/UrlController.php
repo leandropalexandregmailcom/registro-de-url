@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Url;
-use Illuminate\Http\Request;
-use App\Http\Url\Requests\UpdateUrlRequest;
 use App\Models\UrlModel;
+use App\Models\LogUrlModel;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\Url\CreateUrlRequest;
+use App\Http\Url\Requests\UpdateUrlRequest;
 
 class UrlController extends Controller
 {
@@ -20,7 +22,13 @@ class UrlController extends Controller
 
     public function index()
     {
-        return view('url/index')->with('urls',$this->model->paginate(10));
+        return view('url/index')->with('urls', $this->model->get());
+    }
+
+    public function status($id)
+    {
+        return response()->json(LogUrlModel::select('status_code')->where(["id_url" => $id])
+        ->orderBy('created_at', 'desc')->first());
     }
 
     public function show()

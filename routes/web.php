@@ -32,6 +32,7 @@ Route::prefix('user/')->middleware('auth')->group(function() {
         //Url
         Route::get('index', [UrlController::class, 'index'])->name('index.url');
         Route::get('show', [UrlController::class, 'show'])->name('show.url');
+        Route::get('status/{id}', [UrlController::class, 'status'])->name('status.url');
         Route::post('create', [UrlController::class, 'create'])->name('create.url');
         Route::post('delete', [UrlController::class, 'delete'])->name('delete.url');
 

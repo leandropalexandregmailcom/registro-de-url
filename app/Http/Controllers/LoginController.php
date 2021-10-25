@@ -12,16 +12,6 @@ class LoginController extends Controller
 {
     public function login()
     {
-        foreach(UrlModel::get() as $url)
-        {
-            $data = Http::get("$url->url");
-
-            LogUrlModel::create(["id_url" => $url->id_url,
-                "data"          => strval(mb_substr($data->__toString(), 0, 7000)),
-                "status_code"   => $data->status(),
-                "date"          => $data->header('Date')
-            ]);
-        }
         return view('login/login');
     }
 

@@ -26,7 +26,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
                 <a class="nav-link">
-                    <i class="fas fa-piggy-bank"></i>
+                    <i class="fas fa-plus-square"></i>
                     <p>Registro de URLs</p>
                 </a>
             </li>
@@ -54,7 +54,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('index.url') }}" class="nav-link">
-                            <i class="fas fa-coins"></i>
+                            <i class="fas fa-tasks"></i>
                             <p>Url</p>
                         </a>
                     </li>

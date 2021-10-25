@@ -51,14 +51,13 @@
                                 {{ $url->descricao }}
                             </a>
                         </td>
-                        <td style = "width: 10%;">
-                            <a>
-                                {{ $url->status_code }}
+                        <td style = "text-align: center; width: 10%;">
+                            <a class = "url" id = "{{ $url->id_url }}">
                             </a>
                         </td>
-                        <td class="project-actions text-right">
+                        <td class="text-center project-actions text-right">
                             <a class="btn btn-info btn-sm" href="{{ route('index.log_url', [$url->id_url]) }}">
-                                <i class="fas fa-eyes">
+                                <i class="fas fa-eye"></i>
                                 </i>
                                 Detalhes
                             </a>
@@ -130,6 +129,52 @@
                 id = ""
             })
         })
+
+        var urls = document.getElementsByClassName("url")
+
+        for(let val of urls)
+        {
+            $.ajax({
+                url: 'status/'+val.getAttribute("id"),
+                method: "get"
+            }).success(function(data)
+            {
+                document.getElementById(val.getAttribute("id")).text = data.status_code
+
+
+            }).fail(function(data)
+            {
+                console.log(data)
+            })
+        }
+
+        $(document).ready(function()
+        {
+            setInterval(
+                function status()
+                {
+                    var urls = document.getElementsByClassName("url")
+
+                    for(let val of urls)
+                    {
+                        $.ajax({
+                            url: 'status/'+val.getAttribute("id"),
+                            method: "get"
+                        }).success(function(data)
+                        {
+                            document.getElementById(val.getAttribute("id")).text = data.status_code
+
+
+                        }).fail(function(data)
+                        {
+                            console.log(data)
+                        })
+                    }
+                },
+            30000)
+        })
+
+
 
     </script>
 @endsection
